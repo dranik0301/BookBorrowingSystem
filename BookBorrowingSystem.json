@@ -1,0 +1,107 @@
+{
+  "info": {
+    "name": "Library API",
+    "description": "Простая коллекция запросов к API библиотеки на http://127.0.0.1:5000",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Добавить книгу",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"1984\",\n  \"firstname\": \"George\",\n  \"surname\": \"Orwell\",\n  \"isbn\": 123456789,\n  \"total_copies\": 5,\n  \"available_copies\": 5\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/books",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "5000",
+          "path": ["books"]
+        }
+      }
+    },
+    {
+      "name": "Зарегистрировать пользователя",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstname\": \"Alice\",\n  \"surname\": \"Smith\",\n  \"email\": \"alice@example.com\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/members",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "5000",
+          "path": ["members"]
+        }
+      }
+    },
+    {
+      "name": "Взять книгу",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"member_id\": 1,\n  \"book_id\": 1\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/borrow",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "5000",
+          "path": ["borrow"]
+        }
+      }
+    },
+    {
+      "name": "Вернуть книгу",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"order_id\": 1\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/return",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "5000",
+          "path": ["return"]
+        }
+      }
+    },
+    {
+      "name": "Посмотреть доступные книги",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://127.0.0.1:5000/books/available",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "5000",
+          "path": ["books", "available"]
+        }
+      }
+    },
+    {
+      "name": "Посмотреть книги пользователя",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://127.0.0.1:5000/members/1/borrowed",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "5000",
+          "path": ["members", "1", "borrowed"]
+        }
+      }
+    }
+  ]
+}
