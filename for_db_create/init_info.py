@@ -6,27 +6,27 @@ import random
 from datetime import datetime, timedelta
 
 
-# Загружаем переменные окружения из .env
+# Загружаем переменной из .env
 load_dotenv()
 
-# Получаем имя базы данных из .env
+# Получаем имя базы из .env
 DATABASE_NAME = os.getenv("DATABASE_NAME")
 
 # Определяем путь к проекту
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Путь до for_db_create
-PROJECT_DIR = os.path.dirname(BASE_DIR)  # Путь до всего проекта
+PROJECT_DIR = os.path.dirname(BASE_DIR) # Путь до всего проекта
 DATABASE_PATH = os.path.join(PROJECT_DIR, DATABASE_NAME)
 
 if not os.path.exists(DATABASE_NAME):
-    print(f"Файл базы данных {DATABASE_NAME} не найден.")
+    print(f"Файл базы данных {DATABASE_NAME} не найден")
 else:
     print("Файл с базой существует")
 
-fake = Faker('ru_RU')  # Используем русскую локализацию для Faker
+fake = Faker('ru_RU')  # Используем русскую язык для Faker
 
 
 def generate_random_datetime(start_year=2024):
-    """Генерирует случайную дату и время."""
+    """Генерирует случайную дату и время"""
     start_date = datetime(start_year, 1, 1)
     end_date = datetime.now()
     time_between_dates = end_date - start_date
@@ -57,7 +57,7 @@ def populate_book(num_book):
         """, (title, author, isbn, total_copies, available_copies, created_at))
     conn.commit()
     conn.close()
-    print(f"Таблица 'book' заполнена {num_book} случайными записями.")
+    print(f"Таблица 'book' заполнена на {num_book}")
 
 
 def populate_member(num_member):
@@ -75,7 +75,7 @@ def populate_member(num_member):
         """, (name, email, joined_at))
     conn.commit()
     conn.close()
-    print(f"Таблица 'member' заполнена {num_member} случайными записями.")
+    print(f"Таблица 'member' заполнена на {num_member}")
 
 
 def populate_borrowrecord(num_borrowrecord):
@@ -89,12 +89,12 @@ def populate_borrowrecord(num_borrowrecord):
     member_ids = [row[0] for row in cursor.fetchall()]
 
     if not member_ids:
-        print("В таблице 'member' нет записей.")
+        print("В таблице 'member' нет записей")
         conn.close()
         return
 
     if not book_ids:
-        print("В таблице 'book' нет записей.")
+        print("В таблице 'book' нет записей")
         conn.close()
         return
 
@@ -118,11 +118,12 @@ def populate_borrowrecord(num_borrowrecord):
 
     conn.commit()
     conn.close()
-    print(f"Таблица 'borrowrecord' заполнена {num_borrowrecord} случайными записями.")
+    print(f"Таблица 'borrowrecord' заполнена на {num_borrowrecord}")
 
 
 if __name__ == "__main__":
     # Заполняем таблицы в логическом порядке
     # populate_book(5)
     # populate_member(5)
-    populate_borrowrecord(5)
+    # populate_borrowrecord(5)
+    pass
