@@ -2,10 +2,10 @@ import sqlite3
 import os
 from dotenv import load_dotenv
 
-# Загружаем переменные окружения из .env
+# Загружаем переменной из .env
 load_dotenv()
 
-# Получаем имя базы данных из .env
+# Получаем имя базы из .env
 DATABASE_NAME = os.getenv("DATABASE_NAME")
 
 # Определяем путь к проекту
@@ -14,7 +14,7 @@ PROJECT_DIR = os.path.dirname(BASE_DIR) # Путь до всего проект�
 DATABASE_PATH = os.path.join(PROJECT_DIR, DATABASE_NAME)
 
 if not os.path.exists(DATABASE_PATH):
-    print(f"Файл базы данных {DATABASE_NAME} не найден. Он будет создан автоматически.")
+    print(f"Файл базы данных {DATABASE_NAME} не найден. Будет создаваться")
 
 conn = sqlite3.connect(DATABASE_NAME)
 cursor = conn.cursor()
@@ -22,7 +22,8 @@ cursor = conn.cursor()
 
 def table_exists(table_name: str) -> bool:
     cursor.execute(
-        "SELECT name FROM sqlite_master WHERE type='table' AND name=?;",
+        "SELECT name FROM sqlite_master "
+        "WHERE type='table' AND name=?;",
         (table_name,)
     )
     return cursor.fetchone() is not None
@@ -32,7 +33,7 @@ def create_tables():
     tables = ["book", "member", "borrowrecord"]
 
     if all(table_exists(table) for table in tables):
-        print("Все таблицы уже существуют. Пропускаем создание.")
+        print("Все таблицы уже существуют")
         return
 
     # Таблица книг
@@ -79,7 +80,7 @@ def create_tables():
 
     conn.commit()
     conn.close()
-    print("Таблицы базы данных успешно созданы.")
+    print("Таблицы базы успешно созданы")
 
 
 if __name__ == "__main__":
