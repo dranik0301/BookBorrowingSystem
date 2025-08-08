@@ -77,6 +77,7 @@ def borrow_book():
             "order_id": borrow_record.order_id
         })
     except BaseException as e:
+        db.session.rollback()
         logger.error(f"Ошибка при оформлении выдачи книги: {e}")
         return jsonify({"error": e})
 
@@ -129,6 +130,7 @@ def return_book():
         return jsonify({"message": "Книга успешно возвращена"})
 
     except Exception as e:
+        db.session.rollback()
         logger.error(f"Ошибка при возврате книги с записью order_id: {borrow_record_id}")
         return jsonify({"error": e})
 
