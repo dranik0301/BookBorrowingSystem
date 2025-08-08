@@ -73,6 +73,7 @@ def create_book():
         })
 
     except BaseException as e:
+        db.session.rollback()
         logger.error(f"Произошла ошибка при создании книги: {e}")
         return jsonify({"error": e})
 
@@ -115,5 +116,6 @@ def create_member():
         })
 
     except BaseException as e:
+        db.session.rollback()
         logger.error(f"Произошла ошибка при создании пользователя: {e}")
         return jsonify({"error": e})
