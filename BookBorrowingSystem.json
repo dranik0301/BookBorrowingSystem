@@ -1,7 +1,5 @@
 {
   "info": {
-    "name": "Library API",
-    "description": "Простая коллекция запросов к API библиотеки на http://127.0.0.1:5000",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
